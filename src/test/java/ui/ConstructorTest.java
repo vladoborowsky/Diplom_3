@@ -8,9 +8,23 @@ import static org.junit.Assert.assertEquals;
 
 
 public class ConstructorTest extends BaseTest {
+
     @Test
     @DisplayName("Проверка переходов между разделами в конструкторе")
-    public void tabsTest() {
+    public void tabsChooseBunTest() {
+        String expectedTabName;
+        String actualTabName;
+
+        mainPage.chooseFilling(); // Булки выбраны по-умолчанию, поэтому меняем начальное состояние
+        mainPage.chooseBun();
+        expectedTabName = "Булки";
+        actualTabName = mainPage.getActiveChooseTab().getText();
+        assertEquals(expectedTabName, actualTabName);
+    }
+
+    @Test
+    @DisplayName("Проверка переходов между разделами в конструкторе")
+    public void tabsChooseSauceTest() {
         String expectedTabName;
         String actualTabName;
 
@@ -18,14 +32,16 @@ public class ConstructorTest extends BaseTest {
         expectedTabName = "Соусы";
         actualTabName = mainPage.getActiveChooseTab().getText();
         assertEquals(expectedTabName, actualTabName);
+    }
+
+    @Test
+    @DisplayName("Проверка переходов между разделами в конструкторе")
+    public void tabsChooseFillingTest() {
+        String expectedTabName;
+        String actualTabName;
 
         mainPage.chooseFilling();
         expectedTabName = "Начинки";
-        actualTabName = mainPage.getActiveChooseTab().getText();
-        assertEquals(expectedTabName, actualTabName);
-
-        mainPage.chooseBun();
-        expectedTabName = "Булки";
         actualTabName = mainPage.getActiveChooseTab().getText();
         assertEquals(expectedTabName, actualTabName);
     }

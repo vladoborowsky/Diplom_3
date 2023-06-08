@@ -27,13 +27,12 @@ public class LoginTest {
     @Before
     public void setUp() {
         driver = createWebDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         user = UserGenerator.randomUser();
         UserClient.create(user);
         ValidatableResponse loginResponse = UserClient.login(user);
         accessToken = loginResponse.extract().path("accessToken");
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://stellarburgers.nomoreparties.site/login");
     }
 
     @Test
